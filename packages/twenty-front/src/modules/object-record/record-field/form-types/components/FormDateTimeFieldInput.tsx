@@ -146,6 +146,18 @@ export const FormDateTimeFieldInput = ({
     refs: [datePickerWrapperRef],
     listenerId: 'FormDateTimeFieldInputBase',
     callback: (event) => {
+      const target = event.target as HTMLElement;
+      const isMonthDropdown = target.closest(
+        `#${MONTH_AND_YEAR_DROPDOWN_MONTH_SELECT_ID}`,
+      );
+      const isYearDropdown = target.closest(
+        `#${MONTH_AND_YEAR_DROPDOWN_YEAR_SELECT_ID}`,
+      );
+
+      if (isMonthDropdown !== null || isYearDropdown !== null) {
+        return;
+      }
+
       event.stopImmediatePropagation();
 
       closeDropdownYearSelect();
